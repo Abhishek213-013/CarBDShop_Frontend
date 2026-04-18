@@ -1,0 +1,276 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-white text-dark antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-sans font-bold tracking-tight;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary text-white px-6 py-3 rounded-none font-semibold text-sm uppercase tracking-wider 
+           hover:bg-dark transition-all duration-300 inline-flex items-center justify-center gap-2;
+  }
+  
+  .btn-outline {
+    @apply border border-white text-white px-6 py-3 rounded-none font-semibold text-sm uppercase tracking-wider 
+           hover:bg-white hover:text-dark transition-all duration-300 inline-flex items-center justify-center gap-2;
+  }
+  
+  .btn-dark {
+    @apply bg-dark text-white px-6 py-3 rounded-none font-semibold text-sm uppercase tracking-wider 
+           hover:bg-primary transition-all duration-300 inline-flex items-center justify-center gap-2;
+  }
+
+  .btn-outline-dark {
+    @apply border border-dark text-dark px-6 py-3 rounded-none font-semibold text-sm uppercase tracking-wider 
+           hover:bg-dark hover:text-white transition-all duration-300 inline-flex items-center justify-center gap-2;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold mb-4;
+  }
+  
+  .section-subtitle {
+    @apply text-sm uppercase tracking-[0.3em] text-primary font-semibold mb-3;
+  }
+
+  /* Price Range Slider Styles */
+  .price-slider {
+    @apply absolute w-full appearance-none bg-transparent pointer-events-none;
+    top: -6px;
+    height: 24px;
+  }
+  
+  .price-slider-min {
+    @apply z-20;
+  }
+  
+  .price-slider-max {
+    @apply z-10;
+  }
+  
+  .price-slider::-webkit-slider-thumb {
+    @apply appearance-none w-5 h-5 bg-primary rounded-full pointer-events-auto cursor-pointer border-2 border-white shadow-md relative;
+  }
+  
+  .price-slider::-moz-range-thumb {
+    @apply w-5 h-5 bg-primary rounded-full pointer-events-auto cursor-pointer border-2 border-white shadow-md;
+  }
+  
+  .price-slider::-webkit-slider-runnable-track {
+    @apply h-1 bg-transparent;
+  }
+  
+  .price-slider::-moz-range-track {
+    @apply h-1 bg-transparent;
+  }
+
+  /* Card Hover Effects */
+  .hover-card {
+    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+  }
+
+  /* Blog Card Styles */
+  .blog-card {
+    @apply bg-white shadow-sm hover:shadow-lg transition-all duration-300;
+  }
+
+  .blog-card-image {
+    @apply overflow-hidden;
+  }
+
+  .blog-card-image img {
+    @apply w-full h-48 object-cover hover:scale-105 transition-transform duration-500;
+  }
+
+  /* Category Badge */
+  .category-badge {
+    @apply bg-primary/10 text-primary px-2 py-1 text-xs font-semibold uppercase;
+  }
+
+  /* Feature Card (Why Choose Us) */
+  .feature-card {
+    @apply text-center p-6 border border-white/10 hover:border-primary transition-all duration-300;
+  }
+
+  .feature-icon {
+    @apply h-10 w-10 text-primary mx-auto mb-4;
+  }
+
+  /* Step Card (How It Works) */
+  .step-card {
+    @apply text-center group;
+  }
+
+  .step-number {
+    @apply w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 
+           group-hover:bg-primary transition-all duration-300;
+  }
+
+  .step-number span {
+    @apply text-primary text-2xl font-bold group-hover:text-white;
+  }
+
+  /* Gallery Image Hover */
+  .gallery-item {
+    @apply relative group overflow-hidden;
+  }
+
+  .gallery-item img {
+    @apply w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500;
+  }
+
+  .gallery-overlay {
+    @apply absolute inset-0 bg-dark/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 
+           flex items-center justify-center;
+  }
+
+  /* Contact Info Item */
+  .contact-info-item {
+    @apply flex items-start gap-4;
+  }
+
+  .contact-info-icon {
+    @apply h-6 w-6 text-primary mt-1;
+  }
+
+  /* Map Placeholder */
+  .map-placeholder {
+    @apply bg-gray-200 h-full min-h-[400px] flex items-center justify-center;
+  }
+
+  /* Footer Link */
+  .footer-link {
+    @apply text-white/60 hover:text-primary transition-colors;
+  }
+
+  .footer-social-icon {
+    @apply w-10 h-10 bg-white/10 flex items-center justify-center hover:bg-primary transition-all duration-300;
+  }
+
+  /* Mobile Menu Link */
+  .mobile-menu-link {
+    @apply text-white hover:text-primary hover:bg-white/5 transition-all duration-300 py-3 px-4 rounded-lg font-medium;
+  }
+
+  /* Nav Link */
+  .nav-link {
+    @apply text-white hover:text-primary transition-colors font-medium text-sm uppercase tracking-wider;
+  }
+
+  /* Trust Badge */
+  .trust-badge {
+    @apply flex flex-col items-center gap-2;
+  }
+
+  .trust-badge-icon {
+    @apply h-8 w-8 text-primary;
+  }
+
+  /* Car Card (Our Models) */
+  .car-card {
+    @apply relative group text-center;
+  }
+
+  .car-image-container {
+    @apply relative overflow-hidden mb-4;
+  }
+
+  .car-image {
+    @apply w-full h-auto object-contain group-hover:scale-105 transition-transform duration-500;
+  }
+
+  .car-hover-overlay {
+    @apply absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300;
+  }
+
+  .car-name {
+    @apply text-xl font-bold mb-3 text-dark;
+  }
+
+  .car-learn-more {
+    @apply text-primary font-medium hover:text-dark transition-colors inline-flex items-center gap-1;
+  }
+
+  /* Tab Button */
+  .tab-button {
+    @apply px-6 py-2.5 rounded-full font-medium transition-all duration-300 text-sm border border-gray-200;
+  }
+
+  .tab-button-active {
+    @apply bg-dark text-white border-dark;
+  }
+
+  .tab-button-inactive {
+    @apply bg-white text-dark hover:bg-dark hover:text-white hover:border-dark;
+  }
+
+  /* Prebook Category Card */
+  .prebook-card {
+    @apply text-center p-6 border border-gray-200 hover:border-primary hover:shadow-lg transition-all duration-300;
+  }
+
+  .prebook-link {
+    @apply text-dark text-sm font-medium hover:text-primary transition-colors inline-flex items-center gap-1;
+  }
+
+  /* Animation Classes */
+  .fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  .slide-up {
+    animation: slideUp 0.5s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@layer utilities {
+  /* Custom Utilities */
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .text-shadow-lg {
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .bg-gradient-dark {
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5), transparent);
+  }
+
+  .backdrop-blur-xs {
+    backdrop-filter: blur(4px);
+  }
+}
