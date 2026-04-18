@@ -881,40 +881,51 @@
     </section>
 
     <!-- Auto Loan Calculator Section -->
-    <section class="relative z-10 py-20 bg-gray-50">
-      <div class="container mx-auto">
+    <section class="relative z-10 py-20">
+      <!-- Background Image with Car -->
+      <div class="absolute inset-0 z-0">
+        <img 
+          src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?q=80&w=1920&auto=format&fit=crop"
+          alt="Luxury Car Finance"
+          class="w-full h-full object-cover"
+        />
+        <!-- Dark overlay for readability -->
+        <div class="absolute inset-0 bg-gradient-to-r from-dark/95 via-dark/85 to-dark/70"></div>
+      </div>
+
+      <div class="container mx-auto relative z-10">
         <div class="text-center mb-12">
-          <p class="section-subtitle">Plan Your Purchase</p>
-          <h2 class="section-title">Auto Loan Calculator</h2>
-          <p class="text-gray-600 max-w-2xl mx-auto">
+          <p class="section-subtitle text-primary">Plan Your Purchase</p>
+          <h2 class="section-title text-white">Auto Loan Calculator</h2>
+          <p class="text-white/70 max-w-2xl mx-auto">
             Use our calculator to estimate your monthly car payments.
           </p>
         </div>
 
         <div class="max-w-4xl mx-auto">
-          <div class="bg-white shadow-xl p-8 md:p-10">
+          <div class="bg-dark/40 backdrop-blur-sm border border-white/10 shadow-2xl p-8 md:p-10">
             <!-- Total Price -->
             <div class="mb-8">
-              <label class="block text-sm font-semibold text-dark mb-2">Total Price</label>
+              <label class="block text-sm font-semibold text-white/80 mb-2">Total Price</label>
               <div class="flex items-center gap-4">
-                <span class="text-2xl font-bold text-dark">৳</span>
+                <span class="text-3xl font-bold text-primary">৳</span>
                 <input 
                   type="number" 
                   v-model="calculatorForm.carPrice"
                   min="0"
                   step="50000"
-                  class="w-full px-4 py-3 text-2xl font-bold border-0 border-b-2 border-gray-200 focus:border-primary focus:outline-none bg-transparent text-dark"
+                  class="w-full px-4 py-3 text-3xl font-bold border-0 border-b-2 border-white/20 focus:border-primary focus:outline-none bg-transparent text-white placeholder-white/30"
                   placeholder="Enter car price"
                 />
               </div>
             </div>
 
-            <!-- Down Payment & Interest Rate Row -->
+            <!-- Down Payment & Loan Term Row -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
               <!-- Down Payment -->
               <div>
                 <div class="flex justify-between items-center mb-2">
-                  <label class="block text-sm font-semibold text-dark">Down Payment</label>
+                  <label class="block text-sm font-semibold text-white/80">Down Payment</label>
                   <span class="text-primary font-bold">{{ downPaymentPercentage }}%</span>
                 </div>
                 <input 
@@ -923,9 +934,9 @@
                   min="0"
                   max="50"
                   step="1"
-                  class="w-full h-1 bg-gray-200 rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:bg-primary [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:shadow-md"
+                  class="w-full h-1 bg-white/20 rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:bg-primary [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:shadow-md"
                 />
-                <div class="flex justify-between text-xs text-gray-500 mt-1">
+                <div class="flex justify-between text-xs text-white/50 mt-1">
                   <span>0%</span>
                   <span>25%</span>
                   <span>50%</span>
@@ -935,7 +946,7 @@
               <!-- Loan Term (Months) -->
               <div>
                 <div class="flex justify-between items-center mb-2">
-                  <label class="block text-sm font-semibold text-dark">Loan Term</label>
+                  <label class="block text-sm font-semibold text-white/80">Loan Term</label>
                   <span class="text-primary font-bold">{{ calculatorForm.loanTerm }} months</span>
                 </div>
                 <input 
@@ -944,9 +955,9 @@
                   min="12"
                   max="60"
                   step="12"
-                  class="w-full h-1 bg-gray-200 rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:bg-primary [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:shadow-md"
+                  class="w-full h-1 bg-white/20 rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:bg-primary [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:shadow-md"
                 />
-                <div class="flex justify-between text-xs text-gray-500 mt-1">
+                <div class="flex justify-between text-xs text-white/50 mt-1">
                   <span>12 mo</span>
                   <span>24 mo</span>
                   <span>36 mo</span>
@@ -961,7 +972,7 @@
               <!-- Interest Rate -->
               <div>
                 <div class="flex justify-between items-center mb-2">
-                  <label class="block text-sm font-semibold text-dark">Interest Rate</label>
+                  <label class="block text-sm font-semibold text-white/80">Interest Rate</label>
                   <span class="text-primary font-bold">{{ calculatorForm.interestRate }}%</span>
                 </div>
                 <input 
@@ -970,9 +981,9 @@
                   min="0"
                   max="15"
                   step="0.5"
-                  class="w-full h-1 bg-gray-200 rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:bg-primary [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:shadow-md"
+                  class="w-full h-1 bg-white/20 rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:bg-primary [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:shadow-md"
                 />
-                <div class="flex justify-between text-xs text-gray-500 mt-1">
+                <div class="flex justify-between text-xs text-white/50 mt-1">
                   <span>0%</span>
                   <span>5%</span>
                   <span>10%</span>
@@ -981,44 +992,49 @@
               </div>
 
               <!-- Monthly Payment Display -->
-              <div class="bg-gray-50 p-6 border border-gray-200">
-                <p class="text-sm text-gray-500 mb-2">Monthly Payment</p>
-                <p class="text-4xl font-bold text-primary">{{ formatPrice(monthlyPayment) }}</p>
-                <p class="text-xs text-gray-400 mt-2">per month</p>
+              <div class="bg-primary/10 border border-primary/30 p-6 backdrop-blur-sm">
+                <p class="text-sm text-white/60 mb-2">Monthly Payment</p>
+                <p class="text-5xl font-bold text-white">{{ formatPrice(monthlyPayment) }}</p>
+                <p class="text-xs text-white/40 mt-2">per month</p>
               </div>
             </div>
 
             <!-- Calculation Details -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6 border-t border-gray-200">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6 border-t border-white/10">
               <div>
-                <p class="text-xs text-gray-500 uppercase tracking-wider mb-1">Down Payment Amount</p>
-                <p class="text-xl font-bold text-dark">{{ formatPrice(downPaymentAmount) }}</p>
+                <p class="text-xs text-white/50 uppercase tracking-wider mb-1">Down Payment Amount</p>
+                <p class="text-2xl font-bold text-white">{{ formatPrice(downPaymentAmount) }}</p>
               </div>
               <div>
-                <p class="text-xs text-gray-500 uppercase tracking-wider mb-1">Amount Financed</p>
-                <p class="text-xl font-bold text-dark">{{ formatPrice(amountFinanced) }}</p>
+                <p class="text-xs text-white/50 uppercase tracking-wider mb-1">Amount Financed</p>
+                <p class="text-2xl font-bold text-white">{{ formatPrice(amountFinanced) }}</p>
               </div>
               <div>
-                <p class="text-xs text-gray-500 uppercase tracking-wider mb-1">Total Interest</p>
-                <p class="text-xl font-bold text-dark">{{ formatPrice(totalInterest) }}</p>
+                <p class="text-xs text-white/50 uppercase tracking-wider mb-1">Total Interest</p>
+                <p class="text-2xl font-bold text-white">{{ formatPrice(totalInterest) }}</p>
               </div>
             </div>
 
-            <!-- Apply for Loan Button -->
-            <div class="flex justify-center mt-10">
+            <!-- Apply for Loan Button & Auto Finance Badge -->
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 mt-10">
               <button 
                 @click="handleLoanApplication"
-                class="bg-primary text-white px-10 py-4 font-semibold text-sm uppercase tracking-wider hover:bg-dark transition-all duration-300 flex items-center gap-2"
+                class="bg-primary text-white px-10 py-4 font-semibold text-sm uppercase tracking-wider hover:bg-white hover:text-dark transition-all duration-300 flex items-center gap-2"
               >
                 Apply for a Loan
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </button>
+              
+              <div class="flex items-center gap-3">
+                <span class="text-white/40 text-xs uppercase tracking-widest">Powered by</span>
+                <span class="text-white text-lg font-bold tracking-wider">AUTO FINANCE</span>
+              </div>
             </div>
 
             <!-- Bank Comparison Note -->
-            <p class="text-center text-xs text-gray-400 mt-6">
+            <p class="text-center text-xs text-white/30 mt-6">
               * Multiple banks available for comparison. Contact us for personalized loan options.
             </p>
           </div>
