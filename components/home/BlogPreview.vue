@@ -16,8 +16,13 @@
       
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div v-for="post in blogPosts" :key="post.id" class="bg-white shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100">
-          <div class="overflow-hidden">
-            <img :src="post.image" :alt="post.title" class="w-full h-48 object-cover hover:scale-105 transition-transform duration-500" />
+          <div class="overflow-hidden bg-gray-100">
+            <img 
+              :src="post.image" 
+              :alt="post.title" 
+              @error="handleImageError"
+              class="w-full h-48 object-cover hover:scale-105 transition-transform duration-500" 
+            />
           </div>
           <div class="p-6">
             <div class="flex items-center gap-4 text-sm text-gray-500 mb-3">
@@ -34,14 +39,53 @@
           </div>
         </div>
       </div>
+
+      <!-- Empty State - if no blog posts -->
+      <div v-if="blogPosts.length === 0" class="text-center py-12">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-gray-300 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1M5 6h14" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
+        </svg>
+        <p class="text-gray-500 text-lg">Coming Soon</p>
+        <p class="text-gray-400 text-sm mt-2">New articles are on the way. Check back soon!</p>
+      </div>
     </div>
   </section>
 </template>
 
 <script setup>
-const blogPosts = [
-  { id: 1, title: 'Complete Guide to Japanese Car Auctions', category: 'Guides', date: 'Oct 16, 2024', excerpt: 'Learn how Japanese car auctions work and how to get the best deals on quality vehicles.', image: 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?q=80&w=600&auto=format&fit=crop' },
-  { id: 2, title: 'Bangladesh Car Import Process Explained', category: 'Import', date: 'Oct 14, 2024', excerpt: 'Step-by-step breakdown of importing a car from Japan to Bangladesh.', image: 'https://images.unsplash.com/photo-1581540222194-0d38b4d8a7d0?q=80&w=600&auto=format&fit=crop' },
-  { id: 3, title: 'EMI Calculator: Plan Your Car Purchase', category: 'Finance', date: 'Oct 10, 2024', excerpt: 'Use our EMI calculator to plan your finances and find the best loan options.', image: 'https://images.unsplash.com/photo-1568605117036-5fe5e4ba0f5a?q=80&w=600&auto=format&fit=crop' }
-]
+// Default placeholder image for blog posts
+const DEFAULT_BLOG_IMAGE = 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?q=80&w=600&auto=format&fit=crop'
+
+const blogPosts = ref([
+  { 
+    id: 1, 
+    title: 'Complete Guide to Japanese Car Auctions', 
+    category: 'Guides', 
+    date: 'Oct 16, 2024', 
+    excerpt: 'Learn how Japanese car auctions work and how to get the best deals on quality vehicles.', 
+    image: 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?q=80&w=600&auto=format&fit=crop' 
+  },
+  { 
+    id: 2, 
+    title: 'Bangladesh Car Import Process Explained', 
+    category: 'Import', 
+    date: 'Oct 14, 2024', 
+    excerpt: 'Step-by-step breakdown of importing a car from Japan to Bangladesh.', 
+    image: 'images/imported.jpg' 
+  },
+  { 
+    id: 3, 
+    title: 'EMI Calculator: Plan Your Car Purchase', 
+    category: 'Finance', 
+    date: 'Oct 10, 2024', 
+    excerpt: 'Use our EMI calculator to plan your finances and find the best loan options.', 
+    image: '/images/blog-image.png'
+  }
+])
+
+// Handle image error - replace with default
+const handleImageError = (event) => {
+  event.target.src = DEFAULT_BLOG_IMAGE
+}
 </script>
