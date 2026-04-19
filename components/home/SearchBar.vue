@@ -56,15 +56,19 @@
           </div>
           
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-end">
+            <!-- Price Range with Dual Slider -->
             <div>
               <label class="block text-xs font-semibold uppercase tracking-wider text-gray-500 mb-2">PRICE RANGE</label>
-              <div class="flex items-center gap-4">
+              <div class="flex items-center gap-4 mb-2">
                 <span class="text-dark font-semibold">{{ formatPrice(minPrice) }}</span>
                 <span class="text-gray-400">-</span>
                 <span class="text-dark font-semibold">{{ formatPrice(maxPrice) }}</span>
               </div>
-              <div class="mt-6 px-2">
+              
+              <!-- Dual Range Slider -->
+              <div class="mt-4 px-2">
                 <div class="relative h-1 bg-gray-200 rounded-full">
+                  <!-- Active Track Fill -->
                   <div 
                     class="absolute h-1 bg-primary rounded-full"
                     :style="{ 
@@ -73,23 +77,36 @@
                     }"
                   ></div>
                   
+                  <!-- Min Price Slider -->
                   <input 
                     type="range"
-                    v-model="minPrice"
+                    :value="minPrice"
+                    @input="handleMinPriceInput"
                     :min="0" 
                     :max="MAX_PRICE" 
                     step="50000"
                     class="price-slider price-slider-min"
                   />
                   
+                  <!-- Max Price Slider -->
                   <input 
                     type="range"
-                    v-model="maxPrice"
+                    :value="maxPrice"
+                    @input="handleMaxPriceInput"
                     :min="0" 
                     :max="MAX_PRICE" 
                     step="50000"
                     class="price-slider price-slider-max"
                   />
+                </div>
+                
+                <!-- Price Labels -->
+                <div class="flex justify-between text-xs text-gray-500 mt-2">
+                  <span>৳0</span>
+                  <span>৳25L</span>
+                  <span>৳50L</span>
+                  <span>৳75L</span>
+                  <span>৳1Cr</span>
                 </div>
               </div>
             </div>
@@ -121,16 +138,41 @@ const searchForm = ref({
   bodyStyle: ''
 })
 
-const MAX_PRICE = 10000000
+const MAX_PRICE = 10000000 // 1 Crore
 const minPrice = ref(0)
 const maxPrice = ref(MAX_PRICE)
 
+// Handle min price input with validation
+const handleMinPriceInput = (event) => {
+  const value = parseInt(event.target.value)
+  if (value <= maxPrice.value) {
+    minPrice.value = value
+  } else {
+    minPrice.value = maxPrice.value
+  }
+}
+
+// Handle max price input with validation
+const handleMaxPriceInput = (event) => {
+  const value = parseInt(event.target.value)
+  if (value >= minPrice.value) {
+    maxPrice.value = value
+  } else {
+    maxPrice.value = minPrice.value
+  }
+}
+
+// Watch for cross-validation
 watch(minPrice, (newVal) => {
-  if (newVal > maxPrice.value) minPrice.value = maxPrice.value
+  if (newVal > maxPrice.value) {
+    maxPrice.value = newVal
+  }
 })
 
 watch(maxPrice, (newVal) => {
-  if (newVal < minPrice.value) maxPrice.value = minPrice.value
+  if (newVal < minPrice.value) {
+    minPrice.value = newVal
+  }
 })
 
 const formatPrice = (value) => {
@@ -150,3 +192,36 @@ const handleSearch = () => {
   })
 }
 </script>
+
+<style scoped>
+/* Price Range Slider Styles */
+.price-slider {
+  @apply absolute w-full appearance-none bg-transparent pointer-events-none;
+  top: -6px;
+  height: 24px;
+}
+
+.price-slider-min {
+  @apply z-20;
+}
+
+.price-slider-max {
+  @apply z-10;
+}
+
+.price-slider::-webkit-slider-thumb {
+  @apply appearance-none w-5 h-5 bg-primary rounded-full pointer-events-auto cursor-pointer border-2 border-white shadow-md relative;
+}
+
+.price-slider::-moz-range-thumb {
+  @apply w-5 h-5 bg-primary rounded-full pointer-events-auto cursor-pointer border-2 border-white shadow-md;
+}
+
+.price-slider::-webkit-slider-runnable-track {
+  @apply h-1 bg-transparent;
+}
+
+.price-slider::-moz-range-track {
+  @apply h-1 bg-transparent;
+}
+</style>
