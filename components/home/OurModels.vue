@@ -86,7 +86,7 @@
                 <h3 class="text-xl font-bold mb-3 text-dark">{{ car.name }}</h3>
                 
                 <NuxtLink 
-                  :to="`/car/${car.id}`" 
+                  :to="`/models/${car.id}`" 
                   class="text-primary font-medium hover:text-dark transition-colors inline-flex items-center gap-1"
                 >
                   Learn More

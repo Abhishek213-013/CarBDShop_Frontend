@@ -1,5 +1,5 @@
 <template>
-  <header class="text-white z-50 bg-transparent">
+  <header class="text-white z-50" :class="isHomePage ? 'bg-transparent' : 'bg-dark'">
     <!-- Top Bar - Logo Left, Login/Signup Right -->
     <div class="container mx-auto">
       <div class="flex justify-between items-center py-4">
@@ -53,23 +53,24 @@
           <!-- Right Actions - Phone and Mobile Menu -->
           <div class="flex items-center gap-4">
             <a 
-              href="tel:+8809617703704" 
+              href="tel:+8801987576688" 
               class="hidden md:flex items-center gap-2 text-white hover:text-primary transition-colors"
             >
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
               </svg>
-              <span>+880 1987576688 </span>
+              <span>+880 1987576688</span>
             </a>
             <a 
-              href="tel:+8809617703704" 
+              href="tel:+8801939901253" 
               class="hidden md:flex items-center gap-2 text-white hover:text-primary transition-colors"
             >
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
               </svg>
-              <span>+880 1939901253 </span>
+              <span>+880 1939901253</span>
             </a>
+            
             <!-- Mobile Menu Button -->
             <button 
               @click="mobileMenuOpen = !mobileMenuOpen" 
@@ -90,7 +91,7 @@
     
     <!-- Mobile Menu -->
     <Transition name="slide-down">
-      <div v-if="mobileMenuOpen" class="lg:hidden bg-dark/95 backdrop-blur-sm border-t border-white/10">
+      <div v-if="mobileMenuOpen" class="lg:hidden bg-dark border-t border-white/10">
         <div class="container mx-auto py-4 flex flex-col gap-1">
           <NuxtLink 
             to="/" 
@@ -166,7 +167,14 @@
 </template>
 
 <script setup>
+import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
 const mobileMenuOpen = ref(false)
+
+// Check if current page is homepage
+const isHomePage = computed(() => route.path === '/')
 
 // Close mobile menu on window resize if screen becomes large
 const handleResize = () => {
